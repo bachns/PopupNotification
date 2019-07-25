@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
 	setupUi(this);
 	m_timerShow = new QTimer(this);
+	m_timerShow->setInterval(2 * 1000);
 	connect(m_timerShow, &QTimer::timeout, [=] {
 		closeDialog();
 		m_timerShow->stop();
@@ -33,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
 	});
 
 	m_timerBg = new QTimer(this);
+	m_timerBg->setInterval(10 * 1000);
 	connect(m_timerBg, &QTimer::timeout, [=]{
 		showDialog();
 		m_timerShow->start();
@@ -54,14 +56,22 @@ MainWindow::MainWindow(QWidget *parent)
 	m_systemTrayIcon->setContextMenu(m_menu);
 	connect(m_hideAct, &QAction::triggered,
 		[=] {
-		m_hideAct->isChecked() ? hide() : show();
+		if (m_hideAct->isChecked())
+		{
+			hide();
+		}
+		else
+		{
+			m_timerBg->stop();
+			show();
+		}
 	});
 	connect(m_closeAct, &QAction::triggered,
 		[=] {
 		close();
 	});
 
-	m_notificationDlg = new NotificationDialog(this);
+	m_notificationDlg = new NotificationDialog;
 	m_waitingSpinner = m_notificationDlg->waitingSpinnerWidget();
 	
 	roundnessDsbx->setValue(m_waitingSpinner->roundness());
@@ -72,6 +82,8 @@ MainWindow::MainWindow(QWidget *parent)
 	lineWidthSbx->setValue(m_waitingSpinner->lineWidth());
 	innerRadiusSbx->setValue(m_waitingSpinner->innerRadius());
 	revDsbx->setValue(m_waitingSpinner->revolutionsPersSecond());
+	timeSbx->setValue(m_timerShow->interval() / 1000);
+	stepSbx->setValue(m_timerBg->interval() / 1000);
 	
 	QColor color = m_waitingSpinner->color();
 	QString colorStr = QString("(%1, %2, %3)").arg(color.red()).arg(color.green()).arg(color.blue());
