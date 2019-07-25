@@ -18,6 +18,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSystemTrayIcon>
+#include <QMenu>
+#include <QAction>
+#include <QTimer>
 #include "ui_MainWindow.h"
 #include "NotificationDialog.h"
 #include "WaitingSpinnerWidget.h"
@@ -33,10 +37,17 @@ public:
 private slots:
 	void showDialog();
 	void closeDialog();
+	void startDialog();
 
 private:
 	NotificationDialog* m_notificationDlg = nullptr;
 	WaitingSpinnerWidget* m_waitingSpinner = nullptr;
+	QSystemTrayIcon* m_systemTrayIcon = nullptr;
+	QTimer* m_timerShow = nullptr;
+	QTimer* m_timerBg = nullptr;
+	QMenu* m_menu = nullptr;
+	QAction* m_hideAct = nullptr;
+	QAction* m_closeAct = nullptr;
 };
 
 #endif

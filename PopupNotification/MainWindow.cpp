@@ -1,4 +1,4 @@
-/********************************************************************************
+﻿/********************************************************************************
 *   Copyright (C) 2018 by Bach Nguyen Sy                                       *
 *   Unauthorized copying of this file via any medium is strictly prohibited    *
 *                                                                              *
@@ -22,6 +22,45 @@ MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
 	setupUi(this);
+	m_timerShow = new QTimer(this);
+	connect(m_timerShow, &QTimer::timeout, [=] {
+		closeDialog();
+		m_timerShow->stop();
+	});
+	connect(timeSbx, QOverload<int>::of(&QSpinBox::valueChanged),
+		[=] (int d) {
+		m_timerShow->setInterval(d*1000);
+	});
+
+	m_timerBg = new QTimer(this);
+	connect(m_timerBg, &QTimer::timeout, [=]{
+		showDialog();
+		m_timerShow->start();
+	});
+	connect(stepSbx, QOverload<int>::of(&QSpinBox::valueChanged),
+		[=](int d) {
+		m_timerBg->setInterval(d*1000);
+	});
+
+	m_systemTrayIcon = new QSystemTrayIcon(this);
+	m_systemTrayIcon->setIcon(QIcon(":/Resources/bachns.svg"));
+	m_menu = new QMenu(this);
+	m_closeAct = new QAction("Close", this);
+	m_hideAct = new QAction("Hide", this);
+	m_hideAct->setCheckable(true);
+	m_hideAct->setChecked(false);
+	m_menu->addAction(m_hideAct);
+	m_menu->addAction(m_closeAct);
+	m_systemTrayIcon->setContextMenu(m_menu);
+	connect(m_hideAct, &QAction::triggered,
+		[=] {
+		m_hideAct->isChecked() ? hide() : show();
+	});
+	connect(m_closeAct, &QAction::triggered,
+		[=] {
+		close();
+	});
+
 	m_notificationDlg = new NotificationDialog(this);
 	m_waitingSpinner = m_notificationDlg->waitingSpinnerWidget();
 	
@@ -62,8 +101,15 @@ MainWindow::MainWindow(QWidget *parent)
 		colorLedr->setText(colorStr);
 	});
 
-	connect(showBtn, &QAbstractButton::clicked, this, &MainWindow::showDialog);
-	connect(hideBtn, &QAbstractButton::clicked, this, &MainWindow::closeDialog);
+	connect(showBtn, &QAbstractButton::clicked,
+		[=] {
+		showDialog();
+	});
+	connect(hideBtn, &QAbstractButton::clicked,
+		[=] {
+		closeDialog();
+	});
+	connect(startBtn, &QAbstractButton::clicked, this, &MainWindow::startDialog);
 }
 
 MainWindow::~MainWindow()
@@ -81,4 +127,9 @@ void MainWindow::closeDialog()
 {
 	m_waitingSpinner->stop();
 	m_notificationDlg->close();
+}
+
+void MainWindow::startDialog()
+{
+	m_timerBg->start();
 }

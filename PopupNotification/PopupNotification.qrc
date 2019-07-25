@@ -1,5 +1,6 @@
 <RCC>
-  <qresource prefix="/">
-    <file>Resources/logo256.jpg</file>
-  </qresource>
+    <qresource prefix="/">
+        <file>Resources/logo256.jpg</file>
+        <file>Resources/bachns.svg</file>
+    </qresource>
 </RCC>
