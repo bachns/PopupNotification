@@ -144,6 +144,7 @@ void MainWindow::closeDialog()
 void MainWindow::startDialog()
 {
 	hide();
+	m_hideAct->setChecked(true);
 	showDialog();
 	m_timerShow->start();
 	m_timerBg->start();
