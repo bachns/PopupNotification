@@ -9,18 +9,27 @@
 ********************************************************************************/
 
 /**
-* File name:    PopupNotification/main.cpp
+* File name:    /NotificationDialog.h
 * Date created: Tuesday, Jul 23, 2019
 * Written by Bach Nguyen Sy
 */
 
-#include <QApplication>
-#include "MainWindow.h"
+#ifndef NOTIFICATIONDIALOG_H
+#define NOTIFICATIONDIALOG_H
 
-int main(int argc, char *argv[])
+#include <QDialog>
+#include "ui_NotificationDialog.h"
+
+class NotificationDialog : public QDialog, Ui::NotificationDialog
 {
-	QApplication a(argc, argv);
-	MainWindow w;
-	w.show();
-	return a.exec();
-}
+	Q_OBJECT
+
+public:
+	NotificationDialog(QWidget *parent = Q_NULLPTR);
+	~NotificationDialog();
+	WaitingSpinnerWidget* waitingSpinnerWidget() const;
+
+private:
+};
+
+#endif

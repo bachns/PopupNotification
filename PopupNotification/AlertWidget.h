@@ -9,25 +9,27 @@
 ********************************************************************************/
 
 /**
-* File name:    PopupNotification/PopupNotification.h
+* File name:    /AlertWidget.h
 * Date created: Tuesday, Jul 23, 2019
 * Written by Bach Nguyen Sy
 */
 
-#ifndef POPUPNOTIFICATION_H
-#define POPUPNOTIFICATION_H
+#ifndef ALERTWIDGET_H
+#define ALERTWIDGET_H
 
-#include <QtWidgets/QMainWindow>
-#include "ui_PopupNotification.h"
+#include <QDialog>
+#include "ui_AlertWidget.h"
 
-class PopupNotification : public QMainWindow, Ui::PopupNotificationClass
+class AlertWidget : public QDialog, Ui::AlertWidget
 {
 	Q_OBJECT
 
 public:
-	PopupNotification(QWidget *parent = Q_NULLPTR);
+	AlertWidget(QDialog *parent = Q_NULLPTR);
+	~AlertWidget();
 
 private:
+
 };
 
 #endif

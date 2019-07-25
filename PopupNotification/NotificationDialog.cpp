@@ -9,18 +9,38 @@
 ********************************************************************************/
 
 /**
-* File name:    PopupNotification/main.cpp
+* File name:    /NotificationDialog.cpp
 * Date created: Tuesday, Jul 23, 2019
 * Written by Bach Nguyen Sy
 */
 
-#include <QApplication>
-#include "MainWindow.h"
+#include "NotificationDialog.h"
+#include <QImage>
+#include <QPixmap>
+#include <QDebug>
+#include <QDesktopWidget>
 
-int main(int argc, char *argv[])
+NotificationDialog::NotificationDialog(QWidget *parent)
+	: QDialog(parent)
 {
-	QApplication a(argc, argv);
-	MainWindow w;
-	w.show();
-	return a.exec();
+	setupUi(this);
+	setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);
+	setAttribute(Qt::WA_ShowWithoutActivating);
+
+	QDesktopWidget* desktop = QApplication::desktop();
+	QRect rect = desktop->screenGeometry();
+	move(rect.width() - width() - 50, rect.height() - height() - 50);
+	
+	//waitingSpinner->setColor(QColor("#FFFFFF"));
+	//waitingSpinner->setLineLength(15);
+	//waitingSpinner->start();
+}
+
+NotificationDialog::~NotificationDialog()
+{
+}
+
+WaitingSpinnerWidget* NotificationDialog::waitingSpinnerWidget() const
+{
+	return waitingSpinner;
 }

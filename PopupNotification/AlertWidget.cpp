@@ -9,18 +9,20 @@
 ********************************************************************************/
 
 /**
-* File name:    PopupNotification/main.cpp
+* File name:    /AlertWidget.cpp
 * Date created: Tuesday, Jul 23, 2019
 * Written by Bach Nguyen Sy
 */
 
-#include <QApplication>
-#include "MainWindow.h"
+#include "AlertWidget.h"
 
-int main(int argc, char *argv[])
+AlertWidget::AlertWidget(QString title, QString body, QPixmap image, int duration)
+	: QDialog(Q_NULLPTR)
 {
-	QApplication a(argc, argv);
-	MainWindow w;
-	w.show();
-	return a.exec();
+	setupUi(this);
+	setStyleSheet("background-color:#999999");
+}
+
+AlertWidget::~AlertWidget()
+{
 }

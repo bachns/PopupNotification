@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="PopupNotification">
-    </qresource>
+  <qresource prefix="/">
+    <file>Resources/logo256.jpg</file>
+  </qresource>
 </RCC>
