@@ -164,6 +164,12 @@
       <property name="text">
        <string>Start</string>
       </property>
+      <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item row="1" column="1">
@@ -185,6 +191,23 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>roundnessDsbx</tabstop>
+  <tabstop>opacityDsbx</tabstop>
+  <tabstop>fadePercDsbx</tabstop>
+  <tabstop>linesSbx</tabstop>
+  <tabstop>lineLengthSbx</tabstop>
+  <tabstop>lineWidthSbx</tabstop>
+  <tabstop>innerRadiusSbx</tabstop>
+  <tabstop>revDsbx</tabstop>
+  <tabstop>colorLedr</tabstop>
+  <tabstop>colorBtn</tabstop>
+  <tabstop>timeSbx</tabstop>
+  <tabstop>stepSbx</tabstop>
+  <tabstop>startBtn</tabstop>
+  <tabstop>showBtn</tabstop>
+  <tabstop>hideBtn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
