@@ -143,5 +143,8 @@ void MainWindow::closeDialog()
 
 void MainWindow::startDialog()
 {
+	hide();
+	showDialog();
+	m_timerShow->start();
 	m_timerBg->start();
 }
