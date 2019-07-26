@@ -22,6 +22,7 @@
 #include <QMenu>
 #include <QAction>
 #include <QTimer>
+#include <QPoint>
 #include "ui_MainWindow.h"
 #include "NotificationDialog.h"
 #include "WaitingSpinnerWidget.h"
@@ -46,8 +47,9 @@ private:
 	QTimer* m_timerShow = nullptr;
 	QTimer* m_timerBg = nullptr;
 	QMenu* m_menu = nullptr;
-	QAction* m_hideAct = nullptr;
-	QAction* m_closeAct = nullptr;
+	QAction* m_showAct = nullptr;
+	QAction* m_exitAct = nullptr;
+	QPoint m_position;
 };
 
 #endif

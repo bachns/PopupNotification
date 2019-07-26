@@ -27,13 +27,12 @@ NotificationDialog::NotificationDialog(QWidget *parent)
 	setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);
 	setAttribute(Qt::WA_ShowWithoutActivating);
 
+	waitingSpinner->setColor(Qt::white);
+
 	QDesktopWidget* desktop = QApplication::desktop();
 	QRect rect = desktop->screenGeometry();
-	move(rect.width() - width() - 50, rect.height() - height() - 50);
-	
-	//waitingSpinner->setColor(QColor("#FFFFFF"));
-	//waitingSpinner->setLineLength(15);
-	//waitingSpinner->start();
+	m_position = QPoint(rect.width() - width() - 50, rect.height() - height() - 50);
+	move(m_position);
 }
 
 NotificationDialog::~NotificationDialog()
@@ -43,4 +42,9 @@ NotificationDialog::~NotificationDialog()
 WaitingSpinnerWidget* NotificationDialog::waitingSpinnerWidget() const
 {
 	return waitingSpinner;
+}
+
+QPoint NotificationDialog::position() const
+{
+	return m_position;
 }

@@ -46,34 +46,36 @@ MainWindow::MainWindow(QWidget *parent)
 
 	m_systemTrayIcon = new QSystemTrayIcon(this);
 	m_systemTrayIcon->setIcon(QIcon(":/Resources/bachns.svg"));
+
 	m_menu = new QMenu(this);
-	m_closeAct = new QAction("Close", this);
-	m_hideAct = new QAction("Hide", this);
-	m_hideAct->setCheckable(true);
-	m_hideAct->setChecked(false);
-	m_menu->addAction(m_hideAct);
-	m_menu->addAction(m_closeAct);
+	m_showAct = new QAction("Show", this);
+	m_exitAct = new QAction("Exit", this);
+	m_menu->addAction(m_showAct);
+	m_menu->addAction(m_exitAct);
+	connect(m_showAct, &QAction::triggered,
+		[=] { m_timerBg->stop(); show(); });
+	connect(m_exitAct, &QAction::triggered,
+		[=] { close(); });
 	m_systemTrayIcon->setContextMenu(m_menu);
-	connect(m_hideAct, &QAction::triggered,
-		[=] {
-		if (m_hideAct->isChecked())
-		{
-			hide();
-		}
-		else
-		{
-			m_timerBg->stop();
-			show();
-		}
-	});
-	connect(m_closeAct, &QAction::triggered,
-		[=] {
-		close();
-	});
+	
 
 	m_notificationDlg = new NotificationDialog;
-	m_waitingSpinner = m_notificationDlg->waitingSpinnerWidget();
+	m_position = m_notificationDlg->position();
+	xSbx->setValue(m_position.x());
+	ySbx->setValue(m_position.y());
+	widthSbx->setValue(m_notificationDlg->width());
+	heightSbx->setValue(m_notificationDlg->height());
 	
+	connect(xSbx, QOverload<int>::of(&QSpinBox::valueChanged),
+		[=](int d) { m_position.setX(d); m_notificationDlg->move(m_position); });
+	connect(ySbx, QOverload<int>::of(&QSpinBox::valueChanged),
+		[=](int d) { m_position.setY(d); m_notificationDlg->move(m_position); });
+	connect(widthSbx, QOverload<int>::of(&QSpinBox::valueChanged),
+		[=](int d) { m_notificationDlg->setFixedWidth(d); });
+	connect(heightSbx, QOverload<int>::of(&QSpinBox::valueChanged),
+		[=](int d) { m_notificationDlg->setFixedHeight(d); });
+	m_waitingSpinner = m_notificationDlg->waitingSpinnerWidget();
+
 	roundnessDsbx->setValue(m_waitingSpinner->roundness());
 	opacityDsbx->setValue(m_waitingSpinner->minimumTrailOpacity());
 	fadePercDsbx->setValue(m_waitingSpinner->trailFadePercentage());
@@ -86,8 +88,8 @@ MainWindow::MainWindow(QWidget *parent)
 	stepSbx->setValue(m_timerBg->interval() / 1000);
 	
 	QColor color = m_waitingSpinner->color();
-	QString colorStr = QString("(%1, %2, %3)").arg(color.red()).arg(color.green()).arg(color.blue());
-	colorLedr->setText(colorStr);
+	QString styleSheet = QString("background-color: rgb(%1, %2, %3)").arg(color.red()).arg(color.green()).arg(color.blue());
+	colorBtn->setStyleSheet(styleSheet);
 
 	connect(roundnessDsbx, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
 		[=](double d) { m_waitingSpinner->setRoundness(d); });
@@ -108,9 +110,12 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(colorBtn, &QAbstractButton::clicked,
 		[=] {
 		QColor color = QColorDialog::getColor(m_waitingSpinner->color(), this);
-		m_waitingSpinner->setColor(color);
-		QString colorStr = QString("(%1, %2, %3)").arg(color.red()).arg(color.green()).arg(color.blue());
-		colorLedr->setText(colorStr);
+		if (color.isValid())
+		{
+			m_waitingSpinner->setColor(color);
+			QString styleSheet = QString("background-color: rgb(%1, %2, %3)").arg(color.red()).arg(color.green()).arg(color.blue());
+			colorBtn->setStyleSheet(styleSheet);
+		}
 	});
 
 	connect(showBtn, &QAbstractButton::clicked,
@@ -127,6 +132,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 	closeDialog();
+	delete m_notificationDlg;
 }
 
 void MainWindow::showDialog()
@@ -144,7 +150,6 @@ void MainWindow::closeDialog()
 void MainWindow::startDialog()
 {
 	hide();
-	m_hideAct->setChecked(true);
 	showDialog();
 	m_timerShow->start();
 	m_timerBg->start();

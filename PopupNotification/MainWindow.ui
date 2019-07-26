@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>315</width>
-    <height>402</height>
+    <width>305</width>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,12 +15,15 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0" colspan="3">
+    <item row="0" column="0" colspan="2">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="roundnessLbl">
+      <item row="0" column="1">
+       <widget class="QDoubleSpinBox" name="roundnessDsbx"/>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="lineLengthLbl">
         <property name="text">
-         <string>Roundness:</string>
+         <string>Line length:</string>
         </property>
        </widget>
       </item>
@@ -31,12 +34,38 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="fadePercLbl">
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="opacityDsbx"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="lineWidthLbl">
         <property name="text">
-         <string>Fade Perc:</string>
+         <string>Line width:</string>
         </property>
        </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QSpinBox" name="lineLengthSbx"/>
+      </item>
+      <item row="1" column="3">
+       <widget class="QSpinBox" name="lineWidthSbx"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="roundnessLbl">
+        <property name="text">
+         <string>Roundness:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="innerRadiusLbl">
+        <property name="text">
+         <string>Inner Radius:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QSpinBox" name="innerRadiusSbx"/>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="linesLbl">
@@ -45,103 +74,48 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="lineLengthLbl">
+      <item row="2" column="0">
+       <widget class="QLabel" name="fadePercLbl">
         <property name="text">
-         <string>Line length:</string>
+         <string>Fade Perc:</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="lineWidthLbl">
-        <property name="text">
-         <string>Line width:</string>
-        </property>
-       </widget>
+      <item row="2" column="1">
+       <widget class="QDoubleSpinBox" name="fadePercDsbx"/>
       </item>
       <item row="6" column="0">
-       <widget class="QLabel" name="innerRadiusLbl">
+       <widget class="QLabel" name="timeLbl_2">
         <property name="text">
-         <string>Inner Radius:</string>
+         <string>X:</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="revLbl">
-        <property name="text">
-         <string>Rev/S:</string>
+      <item row="6" column="1">
+       <widget class="QSpinBox" name="xSbx">
+        <property name="maximum">
+         <number>3000</number>
         </property>
        </widget>
       </item>
-      <item row="8" column="0">
+      <item row="4" column="0">
        <widget class="QLabel" name="colorLbl">
         <property name="text">
          <string>Color:</string>
         </property>
        </widget>
       </item>
-      <item row="8" column="1">
-       <widget class="QLineEdit" name="colorLedr"/>
-      </item>
-      <item row="8" column="2">
-       <widget class="QPushButton" name="colorBtn">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="0">
+      <item row="5" column="0">
        <widget class="QLabel" name="timeLbl">
         <property name="text">
          <string>Times (s):</string>
         </property>
        </widget>
       </item>
-      <item row="10" column="0">
-       <widget class="QLabel" name="stepLbl">
-        <property name="text">
-         <string>Step (s):</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1" colspan="2">
-       <widget class="QDoubleSpinBox" name="revDsbx"/>
-      </item>
-      <item row="6" column="1" colspan="2">
-       <widget class="QSpinBox" name="innerRadiusSbx"/>
-      </item>
-      <item row="5" column="1" colspan="2">
-       <widget class="QSpinBox" name="lineWidthSbx"/>
-      </item>
-      <item row="4" column="1" colspan="2">
-       <widget class="QSpinBox" name="lineLengthSbx"/>
-      </item>
-      <item row="3" column="1" colspan="2">
+      <item row="3" column="1">
        <widget class="QSpinBox" name="linesSbx"/>
       </item>
-      <item row="2" column="1" colspan="2">
-       <widget class="QDoubleSpinBox" name="fadePercDsbx"/>
-      </item>
-      <item row="1" column="1" colspan="2">
-       <widget class="QDoubleSpinBox" name="opacityDsbx"/>
-      </item>
-      <item row="0" column="1" colspan="2">
-       <widget class="QDoubleSpinBox" name="roundnessDsbx"/>
-      </item>
-      <item row="9" column="1" colspan="2">
-       <widget class="QSpinBox" name="timeSbx">
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>60</number>
-        </property>
-        <property name="value">
-         <number>2</number>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="1" colspan="2">
+      <item row="5" column="3">
        <widget class="QSpinBox" name="stepSbx">
         <property name="minimum">
          <number>5</number>
@@ -157,9 +131,114 @@
         </property>
        </widget>
       </item>
+      <item row="6" column="3">
+       <widget class="QSpinBox" name="widthSbx">
+        <property name="minimum">
+         <number>10</number>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>120</number>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QPushButton" name="colorBtn">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QLabel" name="stepLbl">
+        <property name="text">
+         <string>Step (s):</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QLabel" name="timeLbl_3">
+        <property name="text">
+         <string>Width:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QSpinBox" name="timeSbx">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>60</number>
+        </property>
+        <property name="value">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="revLbl">
+        <property name="text">
+         <string>Rev/S:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QDoubleSpinBox" name="revDsbx"/>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="timeLbl_4">
+        <property name="text">
+         <string>Y:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QSpinBox" name="ySbx">
+        <property name="maximum">
+         <number>3000</number>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="2">
+       <widget class="QLabel" name="timeLbl_5">
+        <property name="text">
+         <string>Height:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="3">
+       <widget class="QSpinBox" name="heightSbx">
+        <property name="minimum">
+         <number>10</number>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>50</number>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item row="1" column="0">
+     <widget class="QPushButton" name="showBtn">
+      <property name="text">
+       <string>Show</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="hideBtn">
+      <property name="text">
+       <string>Hide</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
      <widget class="QPushButton" name="startBtn">
       <property name="text">
        <string>Start</string>
@@ -172,17 +251,10 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="showBtn">
+    <item row="2" column="1">
+     <widget class="QPushButton" name="exitBtn">
       <property name="text">
-       <string>Show</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="hideBtn">
-      <property name="text">
-       <string>Hide</string>
+       <string>Exit</string>
       </property>
      </widget>
     </item>
@@ -193,20 +265,24 @@
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
   <tabstop>roundnessDsbx</tabstop>
-  <tabstop>opacityDsbx</tabstop>
-  <tabstop>fadePercDsbx</tabstop>
-  <tabstop>linesSbx</tabstop>
   <tabstop>lineLengthSbx</tabstop>
+  <tabstop>opacityDsbx</tabstop>
   <tabstop>lineWidthSbx</tabstop>
+  <tabstop>fadePercDsbx</tabstop>
   <tabstop>innerRadiusSbx</tabstop>
+  <tabstop>linesSbx</tabstop>
   <tabstop>revDsbx</tabstop>
-  <tabstop>colorLedr</tabstop>
   <tabstop>colorBtn</tabstop>
   <tabstop>timeSbx</tabstop>
   <tabstop>stepSbx</tabstop>
-  <tabstop>startBtn</tabstop>
+  <tabstop>xSbx</tabstop>
+  <tabstop>ySbx</tabstop>
+  <tabstop>widthSbx</tabstop>
+  <tabstop>heightSbx</tabstop>
   <tabstop>showBtn</tabstop>
   <tabstop>hideBtn</tabstop>
+  <tabstop>startBtn</tabstop>
+  <tabstop>exitBtn</tabstop>
  </tabstops>
  <resources/>
  <connections/>

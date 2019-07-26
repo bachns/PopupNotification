@@ -28,8 +28,10 @@ public:
 	NotificationDialog(QWidget *parent = Q_NULLPTR);
 	~NotificationDialog();
 	WaitingSpinnerWidget* waitingSpinnerWidget() const;
+	QPoint position() const;
 
 private:
+	QPoint m_position;
 };
 
 #endif
