@@ -57,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(m_exitAct, &QAction::triggered,
 		[=] { close(); });
 	m_systemTrayIcon->setContextMenu(m_menu);
-	
+	m_systemTrayIcon->show();
 
 	m_notificationDlg = new NotificationDialog;
 	m_position = m_notificationDlg->position();
